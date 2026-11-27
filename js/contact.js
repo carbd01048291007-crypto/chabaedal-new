@@ -1,21 +1,11 @@
 // 문의하기: 문자(A) + 구글 시트(B)로 보내기
 //
 // [구글 시트 연결 방법]
-// 구글 설문지를 만든 뒤, 설문지 주소와 각 질문 번호(entry.숫자)를 아래에 적으면
-// 컴퓨터에서 남긴 문의도 구글 시트에 쌓입니다. 비워 두면 문자로만 보냅니다.
-var GOOGLE_FORM = {
-  action: '',              // 예: https://docs.google.com/forms/d/e/....../formResponse
-  fields: {
-    service: '',           // 예: entry.1234567890
-    from: '',
-    to: '',
-    when: '',
-    car: '',
-    name: '',
-    phone: '',
-    memo: ''
-  }
-};
+// 구글 시트 "홈페이지 견적 문의"에 tools/google-apps-script.gs 를 붙여 웹 앱으로 배포한 뒤,
+// 받은 웹 앱 주소(https://script.google.com/macros/s/..../exec)를 아래에 적습니다.
+// 비워 두면 문자로만 보냅니다.
+var SHEET_URL = '';
+var FIELDS = ['service', 'from', 'to', 'when', 'car', 'name', 'phone', 'memo'];
 var SMS_NUMBER = '01021335879';
 
 (function () {
@@ -100,22 +90,21 @@ var SMS_NUMBER = '01021335879';
     }
 
     // 구글 시트가 연결되지 않았으면 문자로 보냅니다
-    if (!GOOGLE_FORM.action) {
+    if (!SHEET_URL) {
       show('ok', '문자 앱에 문의 내용이 채워집니다. 보내기 버튼을 눌러 주세요.<br>' +
         '컴퓨터에서 보고 계시면 <a href="tel:16665879">1666-5879</a>로 전화하시거나 카카오톡으로 문의해 주세요.');
       location.href = smsLink();
       return;
     }
 
-    var data = new FormData();
-    Object.keys(GOOGLE_FORM.fields).forEach(function (k) {
-      if (GOOGLE_FORM.fields[k]) data.append(GOOGLE_FORM.fields[k], value(k));
-    });
+    var data = new URLSearchParams();
+    FIELDS.forEach(function (k) { data.append(k, value(k)); });
+    data.append('website', value('website'));
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true;
     btn.textContent = '보내는 중';
 
-    fetch(GOOGLE_FORM.action, { method: 'POST', mode: 'no-cors', body: data })
+    fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: data })
       .then(function () {
         show('ok', '문의가 접수되었습니다. 확인 후 <strong>' + value('phone') + '</strong>로 연락드리겠습니다.' +
           '<br><a class="btn btn-outline" href="' + smsLink() + '">문자로도 보내기</a>');

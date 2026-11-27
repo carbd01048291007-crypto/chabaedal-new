@@ -109,6 +109,12 @@
           <textarea id="f-memo" name="memo" placeholder="수동 변속기, 키 전달 방법, 검사 대행 등"></textarea>
         </div>
 
+        <!-- 자동 광고 프로그램 막기용 숨은 칸 (사람에게는 보이지 않음) -->
+        <div style="position:absolute;left:-9999px" aria-hidden="true">
+          <label for="f-website">홈페이지 주소</label>
+          <input id="f-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
         <div class="consent">
           <p><strong>개인정보 수집·이용 안내</strong><br>
           수집 항목: 이름, 연락처, 출발지, 도착지, 차종, 요청 사항<br>
