@@ -4,7 +4,7 @@
 // 구글 시트 "홈페이지 견적 문의"에 tools/google-apps-script.gs 를 붙여 웹 앱으로 배포한 뒤,
 // 받은 웹 앱 주소(https://script.google.com/macros/s/..../exec)를 아래에 적습니다.
 // 비워 두면 문자로만 보냅니다.
-var SHEET_URL = '';
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzvstqIRFCImZbupZC-KQean2HmJ6IHPlxE8bVFEO9Pg-tEN5cQa9uKc-1LuvtAZVcU/exec';
 var FIELDS = ['service', 'from', 'to', 'when', 'car', 'name', 'phone', 'memo'];
 var SMS_NUMBER = '01021335879';
 
