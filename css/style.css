@@ -622,3 +622,22 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .reveal-on [data-reveal] [data-reveal-item] { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---------- 체크리스트 (기사 모집) ---------- */
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.checklist li {
+  display: flex; align-items: center; gap: 14px;
+  min-height: 72px; padding: 14px 18px; border-radius: 12px;
+  background: var(--white); border: 2px solid var(--line);
+  font-weight: 700; font-size: 18px; color: var(--ink);
+}
+.checklist .tick {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px; background: var(--sign); position: relative;
+}
+.checklist .tick::after {
+  content: ""; position: absolute; left: 12px; top: 6px; width: 9px; height: 17px;
+  border: solid var(--white); border-width: 0 4px 4px 0; transform: rotate(45deg);
+}
+@media (max-width: 720px) { .checklist { grid-template-columns: 1fr; } .checklist li { font-size: 17px; min-height: 64px; } }
+/* 페이지 안에서 이동할 때 맨 위 메뉴줄이 제목을 가리지 않게 */
+[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
