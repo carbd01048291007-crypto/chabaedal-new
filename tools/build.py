@@ -13,6 +13,10 @@ import json
 import re
 from pathlib import Path
 
+# 홈페이지 인터넷 주소 (도메인을 연결하면 여기만 바꾸면 됩니다. 끝에 / 를 붙입니다)
+SITE_URL = "https://carbd01048291007-crypto.github.io/chabaedal-new/"
+SHARE_IMAGE = "images/share.jpg"   # 카카오톡·문자 공유 미리보기 사진 (1200x630)
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 LAYOUT = (ROOT / "tools" / "layout.html").read_text(encoding="utf-8")
@@ -47,7 +51,8 @@ def build(page: Path) -> None:
     html = (
         LAYOUT.replace("{{title}}", meta["title"])
         .replace("{{description}}", meta["description"])
-        .replace("{{image}}", meta.get("image", "images/hero-buses.jpg"))
+        .replace("{{image}}", SITE_URL + meta.get("image", SHARE_IMAGE))
+        .replace("{{url}}", SITE_URL + ("" if page.name == "index.html" else page.name))
         .replace("{{header_attr}}", " data-solid" if meta.get("solid") else "")
         .replace("{{nav}}", nav_html(page.name))
         .replace("{{scripts}}", "".join(f'\n<script src="{s}"></script>' for s in meta.get("scripts", [])))
