@@ -9,6 +9,7 @@ src/ 폴더의 각 페이지 본문에 공통 틀(맨 위 메뉴, 바닥글, 오
 src/*.html 맨 첫 줄에는 아래처럼 페이지 정보를 적습니다.
 <!-- {"title": "...", "description": "...", "image": "images/....jpg", "solid": false} -->
 """
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -58,6 +59,12 @@ def build(page: Path) -> None:
         .replace("{{scripts}}", "".join(f'\n<script src="{s}"></script>' for s in meta.get("scripts", [])))
         .replace("{{body}}", body.rstrip() + "\n")
     )
+    # 디자인·동작 파일이 바뀌면 주소 뒤 버전이 바뀌어, 휴대폰·컴퓨터가 예전 파일을 쓰지 않게 함
+    def bust(m):
+        f = ROOT / m.group(2)
+        v = hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else "0"
+        return f'{m.group(1)}="{m.group(2)}?v={v}"'
+    html = re.sub(r'(href|src)="((?:css|js)/[^"?]+)"', bust, html)
     (ROOT / page.name).write_text(html, encoding="utf-8")
     print("만듦:", page.name)
 

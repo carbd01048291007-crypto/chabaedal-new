@@ -40,3 +40,10 @@
   }, { threshold: 0.2 });
   boxes.forEach(function (b) { io.observe(b); });
 })();
+
+// 바깥에서 불러오는 그림을 못 불러오면 깨진 그림 표시 대신 숨기기
+document.querySelectorAll('img[data-hide-broken]').forEach(function (img) {
+  function hide() { img.style.visibility = 'hidden'; }
+  img.addEventListener('error', hide);
+  if (img.complete && img.naturalWidth === 0 && img.src) hide();
+});

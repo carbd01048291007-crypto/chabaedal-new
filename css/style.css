@@ -693,3 +693,15 @@ p { margin: 0; }
 .yt-locked .lock { background: none; }
 .yt-locked .lock::before, .yt-locked .lock::after { top: 42%; }
 .yt-locked-name { position: relative; color: rgba(255,255,255,.9); font-size: 13px; font-weight: 700; line-height: 1.3; }
+/* 섬네일이 들어간 준비 중 칸·잠금 칸 */
+.yt-soon > img, .yt-locked li > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.yt-soon::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,30,51,.75) 0%, rgba(15,30,51,.15) 55%); }
+.yt-soon .yt-icon, .yt-soon .yt-badge, .yt-soon .yt-soon-text { z-index: 1; }
+.yt-locked li { position: relative; }
+.yt-locked li::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,30,51,.85) 0%, rgba(15,30,51,.25) 60%); }
+.yt-locked .lock, .yt-locked-name { z-index: 1; }
+.yt-locked-name { text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+.yt-soon-text { left: auto; right: 12px; top: 12px; bottom: auto; padding: 4px 10px; border-radius: 999px;
+  background: rgba(15,30,51,.85); color: #fff; font-size: 13.5px; font-weight: 800; }
+.yt-soon::after { background: rgba(15,30,51,.12); }
+.yt-soon .yt-icon { opacity: .9; }
