@@ -215,7 +215,7 @@ p { margin: 0; }
   background: rgba(255,255,255,.95); color: var(--ink);
   font: inherit; font-weight: 700; font-size: 17px;
 }
-.sign-row input::placeholder { color: #8796A6; font-weight: 500; }
+.sign-row input::placeholder { color: #5F6E80; font-weight: 500; }
 .sign-arrow {
   display: flex; align-items: center; gap: 10px; padding: 0 8px 4px 70px;
   color: rgba(255,255,255,.9); font-size: 14px; font-weight: 700;
@@ -572,3 +572,4 @@ p { margin: 0; }
 .prose .price-table td { font-size: 15.5px; }
 .consent a { color: var(--navy); font-weight: 700; }
 @media (max-width: 640px) { .prose .price-table { min-width: 0; } }
+.field input::placeholder, .field textarea::placeholder { color: #5F6E80; }

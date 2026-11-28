@@ -2,7 +2,10 @@
 
   <!-- 첫 화면 -->
   <section class="hero" aria-labelledby="hero-title">
-    <img class="hero-photo" src="images/hero-buses.jpg" alt="출고를 기다리는 수소전기버스 세 대" fetchpriority="high">
+    <picture>
+      <source media="(max-width: 640px)" srcset="images/hero-buses-mobile.jpg">
+      <img class="hero-photo" src="images/hero-buses.jpg" alt="출고를 기다리는 수소전기버스 세 대" fetchpriority="high">
+    </picture>
     <div class="wrap hero-inner">
       <div class="hero-title">
         <span class="hero-kicker">전국 차량 탁송, 24시간 접수</span>
