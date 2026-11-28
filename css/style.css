@@ -683,3 +683,13 @@ p { margin: 0; }
 }
 @media (max-width: 820px) { .yt-locked { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .yt-grid { grid-template-columns: 1fr; } }
+/* 미리 보기 준비 중 칸, 잠금 칸(유튜브 섬네일 없이) */
+.yt-soon { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); }
+.yt-soon .yt-icon { opacity: .45; }
+.yt-soon-text { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; color: rgba(255,255,255,.85); font-weight: 700; }
+.yt-locked li { display: flex; flex-direction: column; justify-content: flex-end; padding: 10px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); }
+.yt-locked .lock { background: none; }
+.yt-locked .lock::before, .yt-locked .lock::after { top: 42%; }
+.yt-locked-name { position: relative; color: rgba(255,255,255,.9); font-size: 13px; font-weight: 700; line-height: 1.3; }
