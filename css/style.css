@@ -559,3 +559,16 @@ p { margin: 0; }
   .price-table td.won { font-size: 15.5px; }
   .price-table tbody th { white-space: normal; }
 }
+
+/* 긴 글(개인정보처리방침 등) */
+.prose { max-width: 820px; }
+.prose h2 { margin-top: 44px; font-family: var(--font-display); font-size: 24px; color: var(--navy-deep); }
+.prose h2:first-child { margin-top: 0; }
+.prose p, .prose ul, .prose .table-wrap, .prose .facts { margin-top: 12px; }
+.prose ul { padding-left: 1.2em; color: var(--ink-soft); }
+.prose li + li { margin-top: 6px; }
+.prose li strong { color: var(--ink); }
+.prose .price-table { min-width: 560px; }
+.prose .price-table td { font-size: 15.5px; }
+.consent a { color: var(--navy); font-weight: 700; }
+@media (max-width: 640px) { .prose .price-table { min-width: 0; } }
