@@ -641,3 +641,45 @@ p { margin: 0; }
 @media (max-width: 720px) { .checklist { grid-template-columns: 1fr; } .checklist li { font-size: 17px; min-height: 64px; } }
 /* 페이지 안에서 이동할 때 맨 위 메뉴줄이 제목을 가리지 않게 */
 [id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+/* ---------- 교육 영상 ---------- */
+.yt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.yt { margin: 0; }
+.yt-play, .yt-frame {
+  display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; overflow: hidden;
+  background: var(--navy) ; position: relative; padding: 0; cursor: pointer;
+}
+.yt-play img { width: 100%; height: 100%; object-fit: cover; }
+.yt-icon {
+  position: absolute; left: 50%; top: 50%; width: 72px; height: 50px; margin: -25px 0 0 -36px;
+  background: var(--youtube); border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+.yt-icon::after {
+  content: ""; position: absolute; left: 29px; top: 14px;
+  border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent #fff;
+}
+.yt-play:hover .yt-icon { filter: brightness(1.1); }
+.yt-badge {
+  position: absolute; left: 12px; top: 12px; padding: 4px 10px; border-radius: 999px;
+  background: var(--sign); color: #fff; font-weight: 800; font-size: 13.5px;
+}
+.yt figcaption { margin-top: 12px; font-weight: 800; color: var(--navy-deep); font-size: 18px; line-height: 1.4; }
+.yt figcaption span { display: block; font-weight: 500; font-size: 15px; color: var(--ink-soft); }
+.yt-more { margin-top: 40px; }
+.yt-more-title { font-weight: 800; color: var(--navy-deep); margin-bottom: 12px; }
+.yt-locked { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+.yt-locked li { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: var(--navy); }
+.yt-locked img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85); }
+.yt-locked .lock {
+  position: absolute; inset: 0; background: rgba(15,30,51,.35);
+}
+.yt-locked .lock::after { /* 자물쇠 */
+  content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 14px; margin: -2px 0 0 -9px;
+  background: #fff; border-radius: 3px;
+}
+.yt-locked .lock::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -11px 0 0 -7px;
+  border: 3px solid #fff; border-bottom: 0; border-radius: 7px 7px 0 0;
+}
+@media (max-width: 820px) { .yt-locked { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .yt-grid { grid-template-columns: 1fr; } }
