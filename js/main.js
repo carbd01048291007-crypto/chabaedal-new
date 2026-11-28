@@ -26,3 +26,17 @@
     });
   }
 })();
+
+// 요금표·차종카드: 화면에 보일 때 줄이 하나씩 나타나기
+(function () {
+  var boxes = document.querySelectorAll('[data-reveal]');
+  if (!boxes.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('reveal-on');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.2 });
+  boxes.forEach(function (b) { io.observe(b); });
+})();

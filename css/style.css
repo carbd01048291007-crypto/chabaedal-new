@@ -573,3 +573,52 @@ p { margin: 0; }
 .consent a { color: var(--navy); font-weight: 700; }
 @media (max-width: 640px) { .prose .price-table { min-width: 0; } }
 .field input::placeholder, .field textarea::placeholder { color: #5F6E80; }
+
+/* ---------- 구간별 요금표 (유튜브 설명 그래픽을 홈페이지용으로) ---------- */
+.route-price {
+  background: var(--white); border: 1px solid var(--line); border-radius: 16px;
+  padding: clamp(22px, 4vw, 44px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.route-price-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 24px;
+  padding-bottom: 20px; border-bottom: 3px solid var(--navy-deep); }
+.route-price-head h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 48px); color: var(--navy-deep); letter-spacing: -.015em; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.tag { display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; border-radius: 999px;
+  border: 2px solid var(--navy); color: var(--navy); font-weight: 800; font-size: 14.5px; background: var(--white); }
+.tag-sign { background: var(--sign); border-color: var(--sign); color: var(--white); }
+.route-rows { list-style: none; margin: 0; padding: 0; }
+.route-rows li { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 16px 4px; border-bottom: 1px solid var(--line); font-size: 18px; font-weight: 700; color: var(--ink); }
+.route-rows li strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 2.4vw, 28px); color: var(--sign); white-space: nowrap; }
+.route-rows li:last-child { border-bottom: 0; background: #EEF6F2; border-radius: 10px; padding-inline: 14px; margin-top: 6px; }
+.route-price-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-top: 18px; color: var(--ink-soft); font-size: 15px; }
+.route-price-foot a { font-weight: 800; color: var(--navy-deep); text-decoration: none; font-size: 17px; }
+@media (max-width: 560px) { .route-rows li { font-size: 16px; padding: 14px 2px; } }
+
+/* ---------- 차종 카드 ---------- */
+.vcard {
+  position: relative; background: var(--navy-deep); color: var(--white); border-radius: 18px;
+  padding: clamp(26px, 5vw, 56px); overflow: hidden;
+}
+.vcard::before { /* 왼쪽 초록 띠: 표지판 색 */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--sign);
+}
+.vcard h3 { margin-top: 18px; font-family: var(--font-display); font-size: clamp(44px, 7vw, 88px); line-height: 1.05; letter-spacing: -.02em; }
+.vcard-route { margin-top: 10px; font-size: clamp(19px, 2vw, 24px); font-weight: 700; color: #9FE8C2; }
+.vcard-stats { margin: clamp(28px, 4vw, 44px) 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.vcard-stats > div { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 16px 18px; }
+.vcard-stats dt { font-size: 14px; color: rgba(255,255,255,.7); font-weight: 700; }
+.vcard-stats dd { margin: 6px 0 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 800; }
+.vcard-stats .hi { background: var(--sign); border-color: var(--sign); }
+.vcard-stats .hi dd { letter-spacing: .08em; color: #FFE27A; }
+.vcard-note { margin-top: 22px; font-weight: 700; color: rgba(255,255,255,.88); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 820px) { .vcard-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vcard-stats dd { font-size: 17px; overflow-wrap: anywhere; } .vcard-stats > div { padding: 14px; } }
+
+/* ---------- 화면에 보일 때 하나씩 나타나기 (자바스크립트가 켜질 때만) ---------- */
+.reveal-on [data-reveal] [data-reveal-item] { opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .45s ease; transition-delay: calc(var(--i, 0) * 110ms); }
+.reveal-on [data-reveal].is-in [data-reveal-item] { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on [data-reveal] [data-reveal-item] { opacity: 1; transform: none; transition: none; }
+}
